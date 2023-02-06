@@ -12,7 +12,7 @@
 - Create a new folder, name it dynamic-assignments. Then inside this folder, create a new file and name it env-vars.yml.We will instruct site.yml to include this playbook later
 - Your GitHub shall have following structure by now.
 
-![alt text](./image/prj13.PNG)
+![alt text](./images/prj13.PNG)
 
 - Now paste the instruction below into the env-vars.yml file. check file permisions `ls-la` make sure its set to ubuntu
 
