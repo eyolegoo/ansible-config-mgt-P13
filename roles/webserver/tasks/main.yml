@@ -1,9 +1,21 @@
 ---
+# tasks file for webserver
+
 - name: install apache
   become: true
   ansible.builtin.yum:
     name: "httpd"
     state: present
+
+
+- name: set directory root to index.php
+  become: yes
+  lineinfile:
+    path: /etc/httpd/conf/httpd.conf
+    regexp: '^DirectoryIndex index.html'
+    line: DirectoryIndex index.php     
+    insertafter: <IfModule dir_module>
+
 
 - name: install git
   become: true
@@ -14,7 +26,7 @@
 - name: clone a repo
   become: true
   ansible.builtin.git:
-    repo: https://github.com/teaguejobs/tooling.git
+    repo: https://github.com/uzukwujp/tooling.git
     dest: /var/www/html
     force: yes
 
@@ -33,3 +45,4 @@
   ansible.builtin.file:
     path: /var/www/html/html
     state: absent
+  notify: Restart httpd service
